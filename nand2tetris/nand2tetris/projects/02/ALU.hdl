@@ -42,5 +42,22 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
+   // Put you code here: 
+   //use a Multiplexer to choose between the listed functions
+   //zx = Multiplexer that does not select the x
+   Not16(in=x, out=notx);
+   Mux4Way16(a=x, b=notx, c=0, d=0, sel[0]=zx, sel[1]=nx, out=w1);
+   
+   Not16(in=y, out=noty);
+   Mux4Way16(a=y, b=noty, c=0, d=0, sel[0]=zy, sel[1]=ny, out=w2);
+   
+   Add16(a=w1, b=w2, out=w3);
+   And16(a=w1, b=w2, out=w4);
+   Mux16(a=w3, b=w4, sel=f, out=w5);
+   
+   Not16(in=w5,out=notw5);
+   Mux16(a=w5, b=notw5, sel=no, out=out);
+   Xor(a=out[15], b=1, out=w6);
+   Not(in=w6, out=ng);
+   
 }

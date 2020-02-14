@@ -43,25 +43,29 @@ CHIP ALU {
 
     PARTS:
    // Put you code here: 
-   //use a Multiplexer to choose between the listed functions
-   //zx = Multiplexer that does not select the x
-   Not16(in=x, out=notx);
-   Mux4Way16(a=x, b=notx, c=0, d=0, sel[0]=zx, sel[1]=nx, out=w1);
    
-   Not16(in=y, out=noty);
-   Mux4Way16(a=y, b=noty, c=0, d=0, sel[0]=zy, sel[1]=ny, out=w2);
+   Mux16(a=x, b=false, sel=zx, out=w0);
+   Not16(in=w0, out=notx);
+   Mux16(a=w0, b=notx, sel=nx, out=w1);
    
-   Add16(a=w1, b=w2, out=w3);
-   And16(a=w1, b=w2, out=w4);
-   Mux16(a=w3, b=w4, sel=f, out=w5);
+   Mux16(a=y, b=false, sel=zy, out=w2);
+   Not16(in=w2, out=noty);
+   Mux16(a=w2, b=noty, sel=ny, out=w3);
    
-   Not16(in=w5,out=notw5);
-   Mux16(a=w5, b=notw5, sel=no, out=out);
-   Xor(a=out[15], b=1, out=w6);
-   Not(in=w6, out=ng);
+   Add16(a=w1, b=w3, out=w4);
+   And16(a=w1, b=w3, out=w5);
+   Mux16(a=w4, b=w5, sel=f, out=w6);
    
-   Or8Way(in=out[7:0], out=w7);
-   Or8Way(in=out[15:8], out=w8);
-   Or(a=w7, b=w8, out=zr);
+   Not16(in=w6,out=notw6);
+   Mux16(a=w6, b=notw6, sel=no, out=wout);
+   
+   And16(a=true, b=wout, out[15]=ng, out[0..14]=drop);
+   
+   Or8Way(in=wout[0..7], out=w8);
+   Or8Way(in=wout[8..15], out=w9);
+   Or(a=w8, b=w9, out=w10);
+   Not(in=w10,out=zr);
+   
+   Or16(a=wout, b=false, out=out);
    
 }

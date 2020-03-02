@@ -19,9 +19,9 @@ CHIP PC {
     // Put your code here:
 	//Remember Mux selects b when 1
 	Mux16(a=w3 , b=in , sel=load, out=w2 ); //selects either in or load
-	Mux16(a=wout , b=w4 , sel=inc, out=w3 ); //selects either result of load or incremented
+	Mux16(a=wout , b=w4 , sel=inc, out=w3 ); //selects either out or out+1
 	Mux16(a=w2 , b=false , sel=reset, out=w1 ); //selects either result of load or sets all to 0
-	Inc16(in=wout, out=w4);
-	Register(in=w1, load=true, out=out, out=wout); 
+	Inc16(in=wout, out=w4); //out+1
+	Register(in=w1, load=true, out=out, out=wout); //out
 	
 }

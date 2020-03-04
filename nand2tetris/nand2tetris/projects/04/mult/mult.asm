@@ -10,10 +10,10 @@
 
 //(LOOP) to add R0 R1 times
 (LOOP)
+	ADD R2,R2,R0
+	SUB R1,R1,#1 
 	@END
 	R1;JEQ //if R1 = 0 , Jump to End
-		//R2 = R2 + R0
-		//R1 --
 	@LOOP
 	0;JMP //loops back
 (END) 

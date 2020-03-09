@@ -12,3 +12,12 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
+
+/*
+@SCREEN 
+M = 1
+
+Keyboard
+@0x6000
+when not 0 
+*/

@@ -9,13 +9,32 @@
 // Put your code here.
 
 //(LOOP) to add R0 R1 times
+
+//R2 = 0
+@R2
+M = 0
+
+
 (LOOP)
-	ADD R2,R2,R0
-	SUB R1,R1,#1 
-	@END
-	R1;JEQ //if R1 = 0 , Jump to End
+	//Get R2
+	@R2
+	D = M
+	//ADD R2,R2,R0
+	@R0
+	D = D + M
+	@R2
+	M = D
+	//SUB R1,R1,#1 
+	@R1
+	D = M - 1
+	M = D
+	
+		//@END
+		//R1;JEQ //if R1 = 0 , Jump to End
 	@LOOP
-	0;JMP //loops back
+	D;JGT //loops back if R1 > 0
+	
+	
 (END) 
 	@End
 	0;JMP //infinite loop

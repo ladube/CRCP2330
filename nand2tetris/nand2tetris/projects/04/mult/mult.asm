@@ -8,12 +8,10 @@
 
 // Put your code here.
 
-//(LOOP) to add R0 R1 times
 
 //R2 = 0
 @R2
 M = 0
-
 
 (LOOP)
 	//Get R2
@@ -29,8 +27,6 @@ M = 0
 	D = M - 1
 	M = D
 	
-		//@END
-		//R1;JEQ //if R1 = 0 , Jump to End
 	@LOOP
 	D;JGT //loops back if R1 > 0
 	

@@ -50,12 +50,19 @@ A = M
 M = D
 
 //increment screen 32 words per 256 rows
+@R0
+D = M + 1
+@KBD
+D = A - D
+@R0
+M = M + 1
+A = M
 
-
-
-//@UPDATE
+@UPDATE
+D;JGT
 //so far it only reaches the first pixel
 //it needs to be recursive
+
 @START
 0;JMP
 //go back to start, not on to clear

@@ -49,7 +49,7 @@ D = M
 A = M
 M = D
 
-//increment screen 32 words per 256 rows
+//Since screen is next to keyboard, use that to increment
 @R0
 D = M + 1
 @KBD
@@ -58,13 +58,13 @@ D = A - D
 M = M + 1
 A = M
 
+//Loop until screen is filled
 @UPDATE
 D;JGT
-//so far it only reaches the first pixel
-//it needs to be recursive
 
+//Go back to the beginning
 @START
 0;JMP
-//go back to start, not on to clear
+
 
 

@@ -13,11 +13,27 @@
 
 // Put your code here.
 
-/*
 @SCREEN 
-M = 1
+D = A //get the address of screen 
+@R0
+M = D //put that in a register
 
+/*
 Keyboard
-@0x6000
-when not 0 
+@KBD
+D = M
+when not 0 go to Fill
+@FILL
+D;JNE
+
+(FILL)
+Filling screen with (1111111111111111 = -1)
+M = -1
+
+or filling screen with 0
+M = 0
+
+@R0 //SCREEN ADDRESS
+A = M
+
 */

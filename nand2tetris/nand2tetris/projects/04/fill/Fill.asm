@@ -12,7 +12,7 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
-(SCREEN)
+(START)
 @SCREEN 
 D = A //get the address of screen 
 @R0
@@ -32,6 +32,18 @@ D;JEQ
 //Filling screen with (1111111111111111 = -1)
 @R1
 M = -1
+@UPDATE
+0;JMP
+
+(CLEAR)
+//or filling screen with 0
+@R1
+M = 0
+@UPDATE
+0;JMP
+
+(UPDATE)
+@R1
 D = M
 @R0 //get screen address and set it to D
 A = M
@@ -39,24 +51,13 @@ M = D
 
 //increment screen 32 words per 256 rows
 
-@FILL
+
+
+//@UPDATE
 //so far it only reaches the first pixel
 //it needs to be recursive
-@KBD
-//go back to keyboard, not on to clear
-
-
-(CLEAR)
-//or filling screen with 0
-@R1
-M = 0
-/*
-D = M
-@R0 
-A = M
-M = D
-*/ This is repeat so can be put into one block called by Fill and Clear
-
-(END) //doesn't actually end - needs to loop back to Screen
-@SCREEN
+@START
 0;JMP
+//go back to start, not on to clear
+
+

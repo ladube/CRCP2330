@@ -18,22 +18,35 @@ D = A //get the address of screen
 @R0
 M = D //put that in a register
 
-/*
-Keyboard
+//Keyboard
 @KBD
 D = M
-when not 0 go to Fill
+//when not 0 go to Fill
 @FILL
 D;JNE
+//when 0 go to Clear
+@CLEAR
+D;JEQ
 
 (FILL)
-Filling screen with (1111111111111111 = -1)
+//Filling screen with (1111111111111111 = -1)
+@R1
 M = -1
-
-or filling screen with 0
-M = 0
-
-@R0 //SCREEN ADDRESS
+D = M
+@R0 //get screen address and set it to D
 A = M
+M = D
 
-*/
+
+(CLEAR)
+//or filling screen with 0
+@R1
+M = 0
+D = M
+@R0 
+A = M
+M = D
+
+(END)
+@END
+0;JMP

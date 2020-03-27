@@ -41,11 +41,27 @@ CHIP CPU {
     PARTS:
     // Put your code here:
 	//Diagram 5.8
-	//MUX16(a = instruction[15], b = outM[15], C, out = w1);
-	//A Register(a = w1, C, out = addressM[15]);
-	//MUX16(a = inM[15], b = A, C, out = w2);
-	//PC(in = addressM[15], reset = reset, C, out = PC out);
-	//D Register(d = outM[15], C, out = w3);
-	//ALU(a = w2, b = w3, 2 C's, out = outM[15]);
 	
+	//Determine A or C instruction
+	//if instruction[15] = 0, A instance (load instruction into A register)
+	//if instruction[15] = 1, C instance (use instruction to calculate)
+	//parsed instruction: ixxaccccccdddjjj
+	
+	//M1
+	//MUX16(a = instruction[15], b = outM[15], sel = C, out = w1);
+	
+	//A Register
+	//Register(in = w1, load = C, out = addressM[15]);
+	
+	//M2
+	//MUX16(a = inM[15], b = A, sel = C, out = w2);
+	
+	//D Register
+	//Register(in = outM[15], load = C, out = w3);
+	
+	//ALU	
+	//ALU(x,y,zx,nx,zy,ny,f,no,out,zr,ng);
+	
+	//PC
+	//PC(in = addressM[15], load = C, inc, reset = reset, out = PC out);
 }

@@ -48,9 +48,11 @@ CHIP CPU {
 	//parsed instruction: ixxaccccccdddjjj
 	
 	//M1
-	//MUX16(a = instruction[15], b = outM[15], sel = C, out = w1);
+		//MUX16(a = outM[15], b = instruction[15], sel = instruction[15], out = w1);
 	
 	//A Register
+		//Not(in=instruction[15], out= notopcode);
+		//Or
 	//Register(in = w1, load = C, out = addressM[15]);
 	
 	//M2

@@ -35,8 +35,8 @@ CHIP Memory {
 	//from Memory Mapped I/O chart:
 	DMux4Way(in=load, sel=address[13..14], a=ram1, b=ram2, c=screen, d=keybd);
 	Or(a=ram1, b=ram2, out=r);
-	RAM16k(in=in, load=r, address=address[?], out=ram); 
-	Screen(in=in, load=screen,address=address[?], out=scn);
+	RAM16K(in=in, load=r, address=address[0..13], out=ram); 
+	Screen(in=in, load=screen,address=address[0..12], out=scn);
 	Keyboard(out=kbd);
 	Mux4Way16(a=ram, b=ram, c=scn, d=kbd, sel=address[13..14], out=out);
 }

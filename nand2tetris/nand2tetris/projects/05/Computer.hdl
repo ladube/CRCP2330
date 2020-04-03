@@ -20,5 +20,5 @@ CHIP Computer {
 
     PARTS:
     // Put your code here:
-	//Computer consists of Memory and CPU 
+	//Computer consists of Memory(ROM and RAM) and CPU 
 }

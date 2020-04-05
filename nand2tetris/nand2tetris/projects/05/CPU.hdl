@@ -63,7 +63,7 @@ CHIP CPU {
 		DRegister(in = aluout, load = w4, out = Dout);
 	
 	//ALU	
-		ALU(x=Dout,y=Aout,zx=instruction[11],nx=instruction[10],zy=instruction[9],ny=instruction[8],f=instruction[7],no=instruction[6],out=aluout,zr=zrout,ng=ngout);
+		ALU(x=Dout,y=Aout,zx=instruction[11],nx=instruction[10],zy=instruction[9],ny=instruction[8],f=instruction[7],no=instruction[6],out=aluout,out=outM,zr=zrout,ng=ngout);
 	
 	//PC
 		Not(in=ngout, out=positive);

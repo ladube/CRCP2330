@@ -48,22 +48,40 @@ CHIP CPU {
 	//parsed instruction: ixxaccccccdddjjj
 	
 	//M1
-		//MUX16(a = outM[15], b = instruction[15], sel = instruction[15], out = w1);
+		Not(in=instruction[15], out= notopcode);
+		Mux16(a = aluout, b = instruction, sel = notopcode, out = w1);
 	
 	//A Register
-		//Not(in=instruction[15], out= notopcode);
-		//Or
-	//Register(in = w1, load = C, out = addressM[15]);
+		Or(a=notopcode, b=instruction[5], out=w2);
+		ARegister(in = w1, load = w2, out = Aout);
 	
 	//M2
-	//MUX16(a = inM[15], b = A, sel = C, out = w2);
+		Mux16(a = Aout, b = inM, sel = instruction[12], out = w3);
 	
 	//D Register
-	//Register(in = outM[15], load = C, out = w3);
+		And(a=instruction[15], b=instruction[4], out=w4);
+		DRegister(in = aluout, load = w4, out = Dout);
 	
 	//ALU	
-	//ALU(x,y,zx,nx,zy,ny,f,no,out,zr,ng);
+		ALU(x=Dout,y=Aout,zx=instruction[11],nx=instruction[10],zy=instruction[9],ny=instruction[8],f=instruction[7],no=instruction[6],out=aluout,zr=zrout,ng=ngout);
 	
 	//PC
-	//PC(in = addressM[15], load = C, inc, reset = reset, out = PC out);
+		Not(in=ngout, out=positive);
+		Not(in=zrout, out=nonzero);
+		And(a=instruction[15],b=instruction[0], out=jgt);
+		And(a=instruction[15], b=instruction[1], out=jeq);
+		And(a=instruction[15], b=instruction[2], out=jlt);
+		
+		And(a=positive,b=nonzero,out=both);
+		And(a=jgt, b=both, out=load1);
+		And(a=jeq, b=zrout, out=load2);
+		And(a=jlt, b=ngout, out=load3);
+		
+		Or(a=load1, b=load2, out=w5);
+		Or(a=load3, b=w5, out=w6);
+		
+		PC(in = Aout, load = w6, inc = true, reset = reset, out[0..14] = pc);
+		
+	//WriteM
+		And(a=instruction[15], b=instruction[3], out=writeM);
 }

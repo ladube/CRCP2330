@@ -1,4 +1,4 @@
-// This file is part of www.nand2tetris.org
+// This file is part ofin www.nand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/05/Computer.hdl
@@ -20,5 +20,16 @@ CHIP Computer {
 
     PARTS:
     // Put your code here:
-	//Computer consists of Memory(ROM and RAM) and CPU 
+	//CPU, Memory, and ROM32K chips 
+	//Diagram 5.9
+	
+	//ROM
+		ROM32K(address = w5, out = w1);
+	
+	//CPU
+		CPU(inM = Mout, instruction = w1, reset = reset, outM = w2, writeM = w3, addressM = w4, pc = w5);
+	
+	//Memory
+		Memory(in = w2, load = w3, address = w4, out = Mout);
+		
 }

@@ -48,12 +48,12 @@ CHIP CPU {
 	//parsed instruction: ixxaccccccdddjjj
 	
 	//M1
-		Not(in=instruction[15], out= notopcode);
+		Not(in = instruction[15], out = notopcode);
 		Mux16(a = aluout, b = instruction, sel = notopcode, out = w1);
 	
 	//A Register
-		Or(a=notopcode, b=instruction[5], out=w2);
-		ARegister(in = w1, load = w2, out = Aout);
+		Or(a = notopcode, b = instruction[5], out = w2);
+		ARegister(in = w1, load = w2, out = Aout, out[0..14] = addressM);
 	
 	//M2
 		Mux16(a = Aout, b = inM, sel = instruction[12], out = w3);

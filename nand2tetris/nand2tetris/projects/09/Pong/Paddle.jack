@@ -1,0 +1,34 @@
+class Paddle{
+
+	field int x, y; // screen location (x left = player) (x right = opponent)
+    field int w, l; // width = 4, length = 20
+	
+	/** Constructor */
+   constructor Ball new(int Ax) {
+      let x = Ax;
+      let y = 0;
+      let w = 4;
+	  let l = 20;
+      do draw();
+      return this;
+   }
+   
+   /** Disposal */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+   /** Draw */
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawRectangle(x, y, x + w, y + l);
+      return;
+   }
+   
+   /** Move */
+   method void move(){
+		//y
+   }
+
+}

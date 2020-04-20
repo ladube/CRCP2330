@@ -1,0 +1,32 @@
+class ScoreBoard{
+
+	field int x, y;  // screen location (x left = player) (x right = opponent)
+	field int num; 	//score number
+	
+	/** Constructor */
+   constructor Ball new(int Ax) {
+      let x = Ax;
+      let y = 20;
+	  let num = 0;
+      do draw();
+      return this;
+   }
+   
+   /** Disposal */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+   /** Draw */
+   method void draw() {
+	  do Output.printString(num);
+      return;
+   }
+   
+   /** Increment Score */
+   method void increment(){
+		let num = num + 1;
+   }
+
+}

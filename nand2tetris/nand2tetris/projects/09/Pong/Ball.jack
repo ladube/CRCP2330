@@ -1,0 +1,33 @@
+class Ball {
+
+   field int x, y; // screen location
+   field int size; // size of ball
+
+   /** Constructor */
+   constructor Ball new(int Ax, int Ay, int Asize) {
+      let x = Ax;
+      let y = Ay;
+      let size = Asize;
+      do draw();
+      return this;
+   }
+   
+   /** Disposal */
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+   /** Draw */
+   method void draw() {
+      do Screen.setColor(true);
+      do Screen.drawCircle(x, y, x + size, y + size);
+      return;
+   }
+   
+   /** Move */
+   method void move(){
+		
+   }
+   
+}

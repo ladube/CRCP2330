@@ -1,0 +1,34 @@
+   /** Constructor */
+   constructor PongGame new() {
+      
+   }
+
+   /** Disposal */
+   method void dispose() {
+      //ends game
+   }
+   
+   /** Player */
+   method void player(){
+		//responds to key presses
+   }
+   
+   /** Ball */
+   method void ball(){
+		//starting in middle and running continuously
+   }
+   
+   /** Opponent */ 
+   method void opponent(){
+		//moves to intercept ball 
+   }
+   
+   /** Score */
+   method void score(){
+		//increments when ball exceeds player and opponent boundaries accordingly
+   }
+   
+   /** Run Game */
+   method void run(){
+		//waits for key to be pressed
+   }

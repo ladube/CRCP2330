@@ -1,4 +1,9 @@
-   /** Constructor */
+ class SquareGame {
+   field Ball ball;
+   field Paddle player;
+   field Paddle opponent;
+						
+  /** Constructor */
    constructor PongGame new() {
       
    }
@@ -31,4 +36,31 @@
    /** Run Game */
    method void run(){
 		//waits for key to be pressed
+		
+		var char key;  // the key currently pressed by the user
+        var boolean exit;
+        let exit = false;
+		
+		while (~exit) {
+         // waits for a key to be pressed
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+            do moveSquare();
+         }
+         if (key = 81)  { let exit = true; }     // q key
+         if (key = 87)  { do player.moveUp(); } // w key
+         if (key = 83)  { do player.moveDown(); } // s key
+         if (key = 131) { do opponent.moveUp(); }   // up arrow
+         if (key = 133) { do opponent.moveDown(); }   // down arrow
+         
+
+         // waits for the key to be released
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do moveSquare();
+         }
+     } // while
+     return;
    }
+   
+}

@@ -26,9 +26,18 @@ class Paddle{
       return;
    }
    
-   /** Move */
-   method void move(){
-		//y
+   /** Move Up */
+   method void moveUp(){
+		if (y > 1){
+			let y = y - 2;
+		}
+   }
+   
+   /** Move Down */
+   method void moveDown(){
+		if ((y + size) < 254) {
+			let y = y + 2;
+		}
    }
 
 }

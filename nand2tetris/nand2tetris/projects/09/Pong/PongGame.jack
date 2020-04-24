@@ -32,7 +32,7 @@
    method void score(){
 		//increments when ball exceeds player and opponent boundaries accordingly
    }
-   
+      
    /** Run Game */
    method void run(){
 		//waits for key to be pressed
@@ -45,7 +45,7 @@
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
-            do moveSquare();
+            do ball.move();
          }
          if (key = 81)  { let exit = true; }     // q key
          if (key = 87)  { do player.moveUp(); } // w key
@@ -57,7 +57,7 @@
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-            do moveSquare();
+			do ball.move();
          }
      } // while
      return;

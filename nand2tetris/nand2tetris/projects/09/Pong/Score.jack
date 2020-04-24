@@ -4,7 +4,7 @@ class ScoreBoard{
 	field int num; 	//score number
 	
 	/** Constructor */
-   constructor Ball new(int Ax) {
+   constructor ScoreBoard new(int Ax) {
       let x = Ax;
       let y = 20;
 	  let num = 0;

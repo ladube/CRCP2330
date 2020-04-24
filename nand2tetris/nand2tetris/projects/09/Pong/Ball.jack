@@ -2,12 +2,15 @@ class Ball {
 
    field int x, y; // screen location
    field int size; // size of ball
+   field int xspeed, yspeed;
 
    /** Constructor */
    constructor Ball new(int Ax, int Ay, int Asize) {
       let x = Ax;
       let y = Ay;
       let size = Asize;
+	  let xspeed = 1;
+	  let yspeed = 1;
       do draw();
       return this;
    }
@@ -27,7 +30,18 @@ class Ball {
    
    /** Move */
    method void move(){
-		
+		if(y <= 0 || (y + size) >= 254){ 
+			let yspeed = multiply(y,-1);
+		{
+		if(x <= 2){
+			//check if the player paddle touches the ball
+			//otherwise increment opponent score
+		}
+		if((x+size) >= 252){
+			//check if the opponent paddle touches the ball
+			//otherwise increment player score
+		}
+		let y = y + yspeed;
    }
    
 }

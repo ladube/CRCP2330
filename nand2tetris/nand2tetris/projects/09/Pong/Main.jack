@@ -7,3 +7,4 @@ class Main {
         do game.dispose();
         return;
     }
+}

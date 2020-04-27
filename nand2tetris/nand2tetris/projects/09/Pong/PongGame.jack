@@ -1,36 +1,31 @@
- class SquareGame {
+ class PongGame {
    field Ball ball;
    field Paddle player;
    field Paddle opponent;
 						
   /** Constructor */
    constructor PongGame new() {
-      
+      let player = Paddle.new(2);
+	  let opponent = Paddle.new(254);
+	  let ball = Ball.new(125,125,5);
+	  return this;
    }
 
    /** Disposal */
    method void dispose() {
-      //ends game
+      do player.dispose();
+	  do opponent.dispose();
+	  do ball.dispose();
+      do Memory.deAlloc(this);
+      return;
    }
    
-   /** Player */
-   method void player(){
-		//responds to key presses
-   }
-   
-   /** Ball */
-   method void ball(){
-		//starting in middle and running continuously
-   }
-   
-   /** Opponent */ 
-   method void opponent(){
-		//moves to intercept ball 
-   }
-   
-   /** Score */
-   method void score(){
-		//increments when ball exceeds player and opponent boundaries accordingly
+   /** Draw */
+   method void draw(){
+		do player.draw();
+		do opponent.draw();
+		do ball.draw();
+		return;
    }
       
    /** Run Game */
@@ -45,7 +40,7 @@
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
-            do ball.move();
+            do draw();
          }
          if (key = 81)  { let exit = true; }     // q key
          if (key = 87)  { do player.moveUp(); } // w key
@@ -57,7 +52,7 @@
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-			do ball.move();
+			do draw();
          }
      } // while
      return;

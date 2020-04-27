@@ -1,10 +1,10 @@
-class ScoreBoard{
+class Score{
 
 	field int x, y;  // screen location (x left = player) (x right = opponent)
 	field int num; 	//score number
 	
 	/** Constructor */
-   constructor ScoreBoard new(int Ax) {
+   constructor Score new(int Ax) {
       let x = Ax;
       let y = 20;
 	  let num = 0;
@@ -27,6 +27,7 @@ class ScoreBoard{
    /** Increment Score */
    method void increment(){
 		let num = num + 1;
+		return;
    }
-
+	
 }

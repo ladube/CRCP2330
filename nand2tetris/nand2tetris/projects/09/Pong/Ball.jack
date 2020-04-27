@@ -31,27 +31,32 @@ class Ball {
    /** Check Collisions */
    method int check(){
 		
-		if(x <= 2){
+		if(x < 2){
 			//check if the player paddle touches the ball
 			return y;
 			//otherwise increment opponent score
 		}
-		if((x+size) >= 252){
+		if((x + size) > 252){
 			//check if the opponent paddle touches the ball
 			return y; 
 			//otherwise increment player score
 		}
+		return 0;
    }
    
    /** Move */
    method void move(){
-		if(y <= 0 || (y + size) >= 254){ 
-			let yspeed = multiply(y,-1);
-		{
+		if(y < 0){ 
+			let yspeed = 1;
+		}
+		if((y + size) > 254){
+			let yspeed = -1;
+		}
 		do Screen.setColor(false);
 		do Screen.drawCircle(x, y, x + size, y + size);
 		let y = y + yspeed;
 		do draw();
+		return;
    }
    
 }

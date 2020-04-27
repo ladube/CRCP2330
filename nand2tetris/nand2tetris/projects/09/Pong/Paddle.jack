@@ -4,7 +4,7 @@ class Paddle{
     field int w, l; // width = 4, length = 20
 	
 	/** Constructor */
-   constructor Ball new(int Ax) {
+   constructor Paddle new(int Ax) {
       let x = Ax;
       let y = 0;
       let w = 4;
@@ -34,16 +34,18 @@ class Paddle{
 			let y = y - 2;
 			do draw();
 		}
+		return;
    }
    
    /** Move Down */
    method void moveDown(){
-		if ((y + size) < 254) {
+		if ((y + l) < 254) {
 			do Screen.setColor(false);
 			do Screen.drawRectangle(x, y, x + w, y + l);
 			let y = y + 2;
 			do draw();
 		}
+		return;
    }
 
 }

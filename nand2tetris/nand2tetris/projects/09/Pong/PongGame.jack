@@ -1,13 +1,14 @@
  class PongGame {
-   field Ball ball;
+   //field Ball ball;
    field Paddle player;
    field Paddle opponent;
+   field int o,p ;
 						
   /** Constructor */
    constructor PongGame new() {
       let player = Paddle.new(2);
 	  let opponent = Paddle.new(254);
-	  let ball = Ball.new(125,125,5);
+	 //let ball = Ball.new(125,125,5);
 	  return this;
    }
 
@@ -15,16 +16,21 @@
    method void dispose() {
       do player.dispose();
 	  do opponent.dispose();
-	  do ball.dispose();
+	  //do ball.dispose();
       do Memory.deAlloc(this);
       return;
    }
    
    /** Draw */
    method void draw(){
+		if (p = 1)  { do player.moveUp(); } // w key
+        if (p = 2)  { do player.moveDown(); } // s key
+        if (o = 1) { do opponent.moveUp(); }   // up arrow
+        if (o = 2) { do opponent.moveDown(); }   // down arrow
 		do player.draw();
 		do opponent.draw();
-		do ball.draw();
+		//do ball.draw();
+		do Sys.wait(7);
 		return;
    }
       
@@ -43,10 +49,10 @@
             do draw();
          }
          if (key = 81)  { let exit = true; }     // q key
-         if (key = 87)  { do player.moveUp(); } // w key
-         if (key = 83)  { do player.moveDown(); } // s key
-         if (key = 131) { do opponent.moveUp(); }   // up arrow
-         if (key = 133) { do opponent.moveDown(); }   // down arrow
+         if (key = 87)  { let p = 1; } // w key
+         if (key = 83)  { let p = 2; } // s key
+         if (key = 131) { let o = 1; }   // up arrow
+         if (key = 133) { let o = 2; }   // down arrow
          
 
          // waits for the key to be released

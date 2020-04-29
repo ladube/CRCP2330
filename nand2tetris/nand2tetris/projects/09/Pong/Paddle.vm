@@ -4,7 +4,7 @@ call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop this 0
-push constant 0
+push constant 30
 pop this 1
 push constant 4
 pop this 2
@@ -46,7 +46,7 @@ function Paddle.moveUp 0
 push argument 0
 pop pointer 0
 push this 1
-push constant 1
+push constant 30
 gt
 if-goto IF_TRUE0
 goto IF_FALSE0

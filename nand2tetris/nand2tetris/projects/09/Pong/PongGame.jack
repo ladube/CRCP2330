@@ -2,13 +2,17 @@
    //field Ball ball;
    field Paddle player;
    field Paddle opponent;
+   field Score pscore; 
+   field Score oscore;
    field int o,p ;
 						
   /** Constructor */
    constructor PongGame new() {
-      let player = Paddle.new(2);
-	  let opponent = Paddle.new(254);
-	 //let ball = Ball.new(125,125,5);
+     //let ball = Ball.new(125,247,5);
+      let player = Paddle.new(6);
+	  let opponent = Paddle.new(500);
+	  let pscore = Score.new(10, 1);
+	  let oscore = Score.new(40, 2);
 	  return this;
    }
 
@@ -16,6 +20,8 @@
    method void dispose() {
       do player.dispose();
 	  do opponent.dispose();
+	  do pscore.dispose();
+	  do oscore.dispose();
 	  //do ball.dispose();
       do Memory.deAlloc(this);
       return;
@@ -23,13 +29,16 @@
    
    /** Draw */
    method void draw(){
+		
 		if (p = 1)  { do player.moveUp(); } // w key
         if (p = 2)  { do player.moveDown(); } // s key
         if (o = 1) { do opponent.moveUp(); }   // up arrow
         if (o = 2) { do opponent.moveDown(); }   // down arrow
 		do player.draw();
 		do opponent.draw();
-		//do ball.draw();
+		do pscore.draw();
+		do oscore.draw();
+		//do ball.move();
 		do Sys.wait(7);
 		return;
    }

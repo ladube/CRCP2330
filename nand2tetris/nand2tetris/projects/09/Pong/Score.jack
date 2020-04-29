@@ -2,12 +2,14 @@ class Score{
 
 	field int x, y;  // screen location (x left = player) (x right = opponent)
 	field int num; 	//score number
+	field int ident; //player number
 	
 	/** Constructor */
-   constructor Score new(int Ax) {
+   constructor Score new(int Ax, int t) {
       let x = Ax;
-      let y = 20;
+      let y = 1;
 	  let num = 0;
+	  let ident = t;
       do draw();
       return this;
    }
@@ -20,7 +22,11 @@ class Score{
    
    /** Draw */
    method void draw() {
-	  do Output.printString(num);
+	  do Output.moveCursor(y,x);
+	  do Output.printString("Player #");
+	  do Output.printInt(ident);
+	  do Output.printString( " :  ");
+	  do Output.printInt(num);
       return;
    }
    

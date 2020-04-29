@@ -73,7 +73,7 @@ function Ball.move 0
 push argument 0
 pop pointer 0
 push this 1
-push constant 0
+push constant 30
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0

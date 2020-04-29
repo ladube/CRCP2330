@@ -46,7 +46,7 @@ class Ball {
    
    /** Move */
    method void move(){
-		if(y < 0){ 
+		if(y < 30){ 
 			let yspeed = 1;
 		}
 		if((y + size) > 254){

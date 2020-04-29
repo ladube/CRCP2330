@@ -1,13 +1,21 @@
 function PongGame.new 0
-push constant 4
+push constant 6
 call Memory.alloc 1
 pop pointer 0
-push constant 2
+push constant 6
 call Paddle.new 1
 pop this 0
-push constant 254
+push constant 500
 call Paddle.new 1
 pop this 1
+push constant 10
+push constant 1
+call Score.new 2
+pop this 2
+push constant 40
+push constant 2
+call Score.new 2
+pop this 3
 push pointer 0
 return
 function PongGame.dispose 0
@@ -19,6 +27,12 @@ pop temp 0
 push this 1
 call Paddle.dispose 1
 pop temp 0
+push this 2
+call Score.dispose 1
+pop temp 0
+push this 3
+call Score.dispose 1
+pop temp 0
 push pointer 0
 call Memory.deAlloc 1
 pop temp 0
@@ -27,7 +41,7 @@ return
 function PongGame.draw 0
 push argument 0
 pop pointer 0
-push this 3
+push this 5
 push constant 1
 eq
 if-goto IF_TRUE0
@@ -37,7 +51,7 @@ push this 0
 call Paddle.moveUp 1
 pop temp 0
 label IF_FALSE0
-push this 3
+push this 5
 push constant 2
 eq
 if-goto IF_TRUE1
@@ -47,7 +61,7 @@ push this 0
 call Paddle.moveDown 1
 pop temp 0
 label IF_FALSE1
-push this 2
+push this 4
 push constant 1
 eq
 if-goto IF_TRUE2
@@ -57,7 +71,7 @@ push this 1
 call Paddle.moveUp 1
 pop temp 0
 label IF_FALSE2
-push this 2
+push this 4
 push constant 2
 eq
 if-goto IF_TRUE3
@@ -72,6 +86,12 @@ call Paddle.draw 1
 pop temp 0
 push this 1
 call Paddle.draw 1
+pop temp 0
+push this 2
+call Score.draw 1
+pop temp 0
+push this 3
+call Score.draw 1
 pop temp 0
 push constant 7
 call Sys.wait 1
@@ -118,7 +138,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push constant 1
-pop this 3
+pop this 5
 label IF_FALSE1
 push local 0
 push constant 83
@@ -127,7 +147,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push constant 2
-pop this 3
+pop this 5
 label IF_FALSE2
 push local 0
 push constant 131
@@ -136,7 +156,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push constant 1
-pop this 2
+pop this 4
 label IF_FALSE3
 push local 0
 push constant 133
@@ -145,7 +165,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push constant 2
-pop this 2
+pop this 4
 label IF_FALSE4
 label WHILE_EXP2
 push local 0

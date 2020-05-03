@@ -42,6 +42,11 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
+function Paddle.position 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Paddle.moveUp 0
 push argument 0
 pop pointer 0

@@ -24,28 +24,21 @@ class Ball {
    /** Draw */
    method void draw() {
       do Screen.setColor(true);
-      do Screen.drawCircle(x, y, x + size, y + size);
+      do Screen.drawRectangle(x, y, x + size, y + size);
       return;
    }
    
    /** Check Collisions */
-   method int check(){
-		
-		if(x < 2){
-			//check if the player paddle touches the ball
-			return y;
-			//otherwise increment opponent score
-		}
-		if((x + size) > 252){
-			//check if the opponent paddle touches the ball
-			return y; 
-			//otherwise increment player score
-		}
-		return 0;
+   method int checkx(){
+		return x;
+   }
+   
+   method int checky(){
+		return y;
    }
    
    /** Move */
-   method void move(){
+   method void move(int xspeed){
 		if(y < 30){ 
 			let yspeed = 1;
 		}
@@ -55,6 +48,7 @@ class Ball {
 		do Screen.setColor(false);
 		do Screen.drawCircle(x, y, x + size, y + size);
 		let y = y + yspeed;
+		let x = x + xspeed;
 		do draw();
 		return;
    }

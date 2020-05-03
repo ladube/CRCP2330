@@ -26,6 +26,11 @@ class Paddle{
       return;
    }
    
+   /** Get y */
+   method int position(){
+		return y;
+   }
+   
    /** Move Up */
    method void moveUp(){
 		if (y > 30){

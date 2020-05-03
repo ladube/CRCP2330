@@ -5,7 +5,7 @@
    field Score pscore; 
    field Score oscore;
    field int o,p;
-   field int c;
+   field int c, playerY, opponentY;
 						
   /** Constructor */
    constructor PongGame new() {
@@ -15,6 +15,8 @@
 	  let pscore = Score.new(10, 1);
 	  let oscore = Score.new(40, 2);
 	  let c = 254;
+	  let playerY = player.position();
+	  let opponentY = opponent.position();
 	  return this;
    }
 
@@ -37,19 +39,22 @@
         if (o = 1) { do opponent.moveUp(); }   // up arrow
         if (o = 2) { do opponent.moveDown(); }   // down arrow
 		
+		let playerY = player.position();
+	    let opponentY = opponent.position();
+	  
 		do Sys.wait(7);
 		return;
    }
    
    /** Handle Ball Movement */
-   method void moveBall(){
+   method void moveBall(int py, int oy){
 		var int dir, bally, paddley, opponenty;
 		let c = ball.checkx();
 		
 		
-			let dir = 1;
-			let paddley = 60;  						 // PROBLEM
-			let opponenty = 40;
+			let dir = -1;
+			let paddley = py;  						 // PROBLEM
+			let opponenty = oy;
 			let bally = ball.checky();
 			
 			if(c = 6){ //check the player paddle 
@@ -96,21 +101,20 @@
             let key = Keyboard.keyPressed();
 			
             do draw();
-			do moveBall();
+			do moveBall(playerY, opponentY);
          }
          if (key = 81)  { let exit = true; }     // q key
          if (key = 87)  { let p = 1; } // w key
          if (key = 83)  { let p = 2; } // s key
          if (key = 131) { let o = 1; }   // up arrow
          if (key = 133) { let o = 2; }   // down arrow
-         
 
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
 			
 			do draw();
-			do moveBall();
+			do moveBall(playerY, opponentY);
          }
      } // while
      return;

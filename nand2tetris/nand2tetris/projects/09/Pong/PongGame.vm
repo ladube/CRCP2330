@@ -1,5 +1,5 @@
 function PongGame.new 0
-push constant 8
+push constant 10
 call Memory.alloc 1
 pop pointer 0
 push constant 254
@@ -23,6 +23,12 @@ call Score.new 2
 pop this 4
 push constant 254
 pop this 7
+push this 1
+call Paddle.position 1
+pop this 8
+push this 2
+call Paddle.position 1
+pop this 9
 push pointer 0
 return
 function PongGame.dispose 0
@@ -91,6 +97,12 @@ push this 2
 call Paddle.moveDown 1
 pop temp 0
 label IF_FALSE3
+push this 1
+call Paddle.position 1
+pop this 8
+push this 2
+call Paddle.position 1
+pop this 9
 push constant 7
 call Sys.wait 1
 pop temp 0
@@ -103,10 +115,11 @@ push this 0
 call Ball.checkx 1
 pop this 7
 push constant 1
+neg
 pop local 0
-push constant 60
+push argument 1
 pop local 2
-push constant 40
+push argument 2
 pop local 3
 push this 0
 call Ball.checky 1
@@ -217,7 +230,9 @@ push pointer 0
 call PongGame.draw 1
 pop temp 0
 push pointer 0
-call PongGame.moveBall 1
+push this 8
+push this 9
+call PongGame.moveBall 3
 pop temp 0
 goto WHILE_EXP1
 label WHILE_END1
@@ -280,7 +295,9 @@ push pointer 0
 call PongGame.draw 1
 pop temp 0
 push pointer 0
-call PongGame.moveBall 1
+push this 8
+push this 9
+call PongGame.moveBall 3
 pop temp 0
 goto WHILE_EXP2
 label WHILE_END2

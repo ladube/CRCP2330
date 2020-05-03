@@ -83,7 +83,7 @@ function Paddle.moveDown 0
 push argument 0
 pop pointer 0
 push this 1
-push this 3
+push constant 20
 add
 push constant 254
 lt

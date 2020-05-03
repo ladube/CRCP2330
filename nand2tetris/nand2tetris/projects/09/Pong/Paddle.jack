@@ -44,7 +44,7 @@ class Paddle{
    
    /** Move Down */
    method void moveDown(){
-		if ((y + l) < 254) {
+		if ((y + 20) < 254) {
 			do Screen.setColor(false);
 			do Screen.drawRectangle(x, y, x + w, y + l);
 			let y = y + 2;

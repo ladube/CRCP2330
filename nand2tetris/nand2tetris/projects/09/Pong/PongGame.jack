@@ -1,21 +1,20 @@
  class PongGame {
-   //field Ball ball;
+   field Ball ball;
    field Paddle player;
    field Paddle opponent;
    field Score pscore; 
    field Score oscore;
-   field int o,p ;
-   field int wall, prevwall;
+   field int o,p;
+   field int c;
 						
   /** Constructor */
    constructor PongGame new() {
-     // let ball = Ball.new(254,125,5);
+      let ball = Ball.new(254,125,5);
       let player = Paddle.new(6);
 	  let opponent = Paddle.new(500);
 	  let pscore = Score.new(10, 1);
 	  let oscore = Score.new(40, 2);
-	  let wall = 0;
-	  let prevwall = 0;
+	  let c = 254;
 	  return this;
    }
 
@@ -25,7 +24,7 @@
 	  do opponent.dispose();
 	  do pscore.dispose();
 	  do oscore.dispose();
-	  //do ball.dispose();
+	  do ball.dispose();
       do Memory.deAlloc(this);
       return;
    }
@@ -43,18 +42,17 @@
    }
    
    /** Handle Ball Movement */
-  /** method void moveBall(){
+   method void moveBall(){
 		var int dir, bally, paddley, opponenty;
-		let wall = ball.checkx();
+		let c = ball.checkx();
 		
-		if((wall > 0)&(~(wall = prevwall))){
-			let prevwall = wall;
-			let dir = 0;
-			let paddley = paddle.position();
-			let opponenty = opponent.position();
+		
+			let dir = 1;
+			let paddley = 60;  						 // PROBLEM
+			let opponenty = 40;
 			let bally = ball.checky();
 			
-			if(wall = 6){ //check the player paddle 
+			if(c = 6){ //check the player paddle 
 				if((bally < paddley) & (bally > (paddley + 20))){
 					let dir = -1;
 				}
@@ -67,7 +65,7 @@
 				}
 			}
 			
-			if(wall = 500){
+			if(c = 500){
 				if((bally < opponenty) & (bally > (opponent + 20))){
 					let dir = -1;
 				}
@@ -80,9 +78,9 @@
 				}
 			}
 			do ball.move(dir);
-		}
+		
 		return;
-   }*/
+   }
       
    /** Run Game */
    method void run(){
@@ -96,8 +94,9 @@
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
-			//do moveBall();
+			
             do draw();
+			do moveBall();
          }
          if (key = 81)  { let exit = true; }     // q key
          if (key = 87)  { let p = 1; } // w key
@@ -109,8 +108,9 @@
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-			//do moveBall();
+			
 			do draw();
+			do moveBall();
          }
      } // while
      return;

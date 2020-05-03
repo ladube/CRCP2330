@@ -46,7 +46,7 @@ class Ball {
 			let yspeed = -1;
 		}
 		do Screen.setColor(false);
-		do Screen.drawCircle(x, y, x + size, y + size);
+		do Screen.drawRectangle(x, y, x + size, y + size);
 		let y = y + yspeed;
 		let x = x + xspeed;
 		do draw();

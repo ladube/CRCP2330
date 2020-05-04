@@ -5,7 +5,6 @@ public class Parser{
 	String line;
 
 	public Parser(String file){
-
 		br = new BufferedReader(new FileReader(file));
 	}
 

@@ -3,12 +3,19 @@ import java.util.HashMap;
 
 public class Assembler {
 	
-	private String file;
-	private int n = 16;
+	public static String file;
+	public static int counter = 0;
+	public static int n = 16;
 	
 	public static void main(String[] args){
-		Parser firstParse = new Parser(file);
-		Parser secondParse = new Parser(file);
+		//the file is args[]
+		String originalFileName = args[0].substring(0,args[0].indexOf('.'));
+		String outputFileName = originalFileName+".hack";
+		Parser firstParse = new Parser(args[0]);
+		Parser secondParse = new Parser(args[0]);
+		File out = new File(outputFileName);
+		out.createNewFile();
+		FileWriter fw = new FileWriter(out);
 
 		//Index of Pre-defined Symbols
 		HashMap<String,String> index = new HashMap<String,String>();
@@ -69,5 +76,6 @@ public class Assembler {
 	public String jump(String j){
 		return jIndex.get(j);
 	}
+
 	
 	

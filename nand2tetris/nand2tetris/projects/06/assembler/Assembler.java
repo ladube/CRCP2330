@@ -4,6 +4,7 @@ import java.util.HashMap;
 public class Assembler {
 	
 	private String file;
+	private int n = 16;
 	
 	public static void main(String[] args){
 		//Index of Pre-defined Symbols
@@ -31,5 +32,19 @@ public class Assembler {
 			//Parse it 
 			//put each section into binary
 			//reassemble
+			
+			HashMap<String,String> cIndex = new HashMap<String,String>();
+			HashMap<String,String> dIndex = new HashMap<String,String>();
+			HashMap<String,String> jIndex = new HashMap<String,String>();
+	
+			 cIndex.put( "0", "0101010" ); cIndex.put( "1", "0111111" ); cIndex.put( "-1", "0111010" ); 
+			 cIndex.put( "D", "0001100" ); cIndex.put( "A", "0110000" ); cIndex.put( "M", "1110000" ); 
+			 cIndex.put( "!D", "0001101" ); cIndex.put( "!A", "0110001" ); cIndex.put( "!M", "1110001" );
+			 cIndex.put( "-D", "0001111" ); cIndex.put( "-A", "0110011" ); cIndex.put( "-M", "1110011" ); 
+			 cIndex.put( "D+1", "0011111" ); cIndex.put( "A+1", "0110111" ); cIndex.put( "M+1", "1110111" );
+			 cIndex.put( "D-1", "0001110" ); cIndex.put( "A-1", "0110010" ); cIndex.put( "M-1", "1110010" );
+			 cIndex.put( "D+A", "0000010" ); cIndex.put( "D+M", "1000010" ); cIndex.put( "D-A", "0010011" );
+			 cIndex.put( "D-M", "1010011" ); cIndex.put( "A-D", "0000111" ); cIndex.put( "M-D", "1000111" );
+			 cIndex.put( "D&A", "0000000" ); cIndex.put( "D&M", "1000000" ); cIndex.put( "D|A", "0010101" ); cIndex.put( "D|M", "1010101" );
 
 }

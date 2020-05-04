@@ -7,6 +7,9 @@ public class Assembler {
 	private int n = 16;
 	
 	public static void main(String[] args){
+		Parser firstParse = new Parser(file);
+		Parser secondParse = new Parser(file);
+
 		//Index of Pre-defined Symbols
 		HashMap<String,String> index = new HashMap<String,String>();
 		index.put( "R0", "0" ); index.put( "R1", "1" ); index.put( "R2", "2" );
@@ -23,7 +26,8 @@ public class Assembler {
 		
 		//Index of Variable Symbols
 			//if seen for the first time, assign a unique memory address starting at 16
-		
+		firstParse.readFile();
+		if(firstParse.findCommandType.equals("L"))
 		//Translating A-instructions
 			//decimal value --> binary value
 			//symbol
@@ -66,17 +70,4 @@ public class Assembler {
 		return jIndex.get(j);
 	}
 	
-	public void Parser(String file){
-		private BufferedReader br = new BufferedReader(new FileReader(file));
-		String line;
-		line = br.readLine();
-		if(line.length() != 0){
-			if(line.charAt(0) == '('){
-				//it is a L Command
-			}else if(line.charAt(0) == '@'){
-				//it is a A Command
-			}else{
-				//it is a C Command
-			}
-		}
-	}
+	

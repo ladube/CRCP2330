@@ -47,4 +47,11 @@ public class Assembler {
 			 cIndex.put( "D-M", "1010011" ); cIndex.put( "A-D", "0000111" ); cIndex.put( "M-D", "1000111" );
 			 cIndex.put( "D&A", "0000000" ); cIndex.put( "D&M", "1000000" ); cIndex.put( "D|A", "0010101" ); cIndex.put( "D|M", "1010101" );
 
+			 dIndex.put( "", "000" ); dIndex.put( "M", "001" ); dIndex.put( "D", "010" );
+			 dIndex.put( "MD", "011" ); dIndex.put( "A", "100" ); dIndex.put( "AM", "101" );
+			 dIndex.put( "AD", "110" ); dIndex.put( "AMD", "111" );
+			 
+			 jIndex.put( "", "000" ); jIndex.put( "JGT", "001" ); jIndex.put( "JEQ", "010" );
+			 jIndex.put( "JGE", "011" ); jIndex.put( "JLT", "100" ); jIndex.put( "JNE", "101" );
+			 jIndex.put( "JLE", "110" ); jIndex.put( "JMP", "111" );
 }

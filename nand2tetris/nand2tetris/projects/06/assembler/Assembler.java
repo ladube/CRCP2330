@@ -16,5 +16,20 @@ public class Assembler {
         index.put( "SCREEN", "16384" ); index.put( "KBD", "24576" ); 
 		index.put( "SP", "0" ); index.put( "LCL", "1" ); index.put( "ARG", "2" ); 
 		index.put( "THIS", "3" ); index.put( "THAT", "4" );
+		
+		//Index of Label Symbols
+		index.put("LOOP", "4"); index.put("STOP", "18"); index.put("END", "22");
+		
+		//Index of Variable Symbols
+			//if seen for the first time, assign a unique memory address starting at 16
+		
+		//Translating A-instructions
+			//decimal value --> binary value
+			//symbol
+			
+		//Translating C-instructions
+			//Parse it 
+			//put each section into binary
+			//reassemble
 
 }

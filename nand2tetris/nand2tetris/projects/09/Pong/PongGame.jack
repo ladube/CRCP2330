@@ -6,6 +6,7 @@
    field Score oscore;
    field int o,p;
    field int c, playerY, opponentY;
+   field int dir;
 						
   /** Constructor */
    constructor PongGame new() {
@@ -17,6 +18,7 @@
 	  let c = 254;
 	  let playerY = player.position();
 	  let opponentY = opponent.position();
+	  let dir = 1;
 	  return this;
    }
 
@@ -38,9 +40,6 @@
         if (p = 2)  { do player.moveDown(); } // s key
         if (o = 1) { do opponent.moveUp(); }   // up arrow
         if (o = 2) { do opponent.moveDown(); }   // down arrow
-		
-		let playerY = player.position();
-	    let opponentY = opponent.position();
 	  
 		do Sys.wait(7);
 		return;
@@ -48,38 +47,37 @@
    
    /** Handle Ball Movement */
    method void moveBall(int py, int oy){
-		var int dir, bally, paddley, opponenty;
+		var int bally, paddley, opponenty;
 		let c = ball.checkx();
 		
-		
-			let dir = -1;
-			let paddley = py;  						 // PROBLEM
+			
+			let paddley = py;  						 
 			let opponenty = oy;
 			let bally = ball.checky();
 			
-			if(c = 6){ //check the player paddle 
-				if((bally < paddley) & (bally > (paddley + 20))){
-					let dir = -1;
+			if(c < 6){ //check the player paddle 
+				if((bally > paddley) & (bally < (paddley + 40))){
+					let dir = 1;
 				}
 				else{
 					do oscore.increment(); 
 					do oscore.draw();
 					//exit this round and start new ball
-					do ball.dispose();
-					let ball = Ball.new(254,125,5);
+					do ball.reset();
+					let dir = -1;
 				}
 			}
 			
-			if(c = 500){
-				if((bally < opponenty) & (bally > (opponent + 20))){
+			if(c > 500){
+				if((bally > opponenty)&(bally < (opponenty+40))){
 					let dir = -1;
 				}
 				else{
 					do pscore.increment();
 					do pscore.draw();					
 					//exit this round and start new ball
-					do ball.dispose();
-					let ball = Ball.new(254,125,5);
+					do ball.reset();
+					let dir = 1;
 				}
 			}
 			do ball.move(dir);
@@ -99,7 +97,8 @@
          // waits for a key to be pressed
          while (key = 0) {
             let key = Keyboard.keyPressed();
-			
+			let playerY = player.position();
+			let opponentY = opponent.position();
             do draw();
 			do moveBall(playerY, opponentY);
          }
@@ -112,7 +111,8 @@
          // waits for the key to be released
          while (~(key = 0)) {
             let key = Keyboard.keyPressed();
-			
+			let playerY = player.position();
+			let opponentY = opponent.position();
 			do draw();
 			do moveBall(playerY, opponentY);
          }

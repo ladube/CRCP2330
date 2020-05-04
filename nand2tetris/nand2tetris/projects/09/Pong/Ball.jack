@@ -2,14 +2,13 @@ class Ball {
 
    field int x, y; // screen location
    field int size; // size of ball
-   field int xspeed, yspeed;
+   field int yspeed;
 
    /** Constructor */
    constructor Ball new(int Ax, int Ay, int Asize) {
       let x = Ax;
       let y = Ay;
       let size = Asize;
-	  let xspeed = 1;
 	  let yspeed = 1;
       do draw();
       return this;
@@ -17,10 +16,16 @@ class Ball {
    
    /** Disposal */
    method void dispose() {
-	  do Screen.setColor(false);
-      do Screen.drawRectangle(x, y, x + size, y + size);
       do Memory.deAlloc(this);
       return;
+   }
+   /** Reset */
+   method void reset(){
+	  do Screen.setColor(false);
+      do Screen.drawRectangle(x, y, x + size, y + size);
+	  let x = 254;
+	  let y = 125;
+	  return;
    }
    
    /** Draw */

@@ -54,4 +54,29 @@ public class Assembler {
 			 jIndex.put( "", "000" ); jIndex.put( "JGT", "001" ); jIndex.put( "JEQ", "010" );
 			 jIndex.put( "JGE", "011" ); jIndex.put( "JLT", "100" ); jIndex.put( "JNE", "101" );
 			 jIndex.put( "JLE", "110" ); jIndex.put( "JMP", "111" );
+	
 }
+	public String dest(String d){
+		return dIndex.get(d);
+	}
+	public String comp(String c){
+		return cIndex.get(c);
+	}
+	public String jump(String j){
+		return jIndex.get(j);
+	}
+	
+	public void Parser(String file){
+		private BufferedReader br = new BufferedReader(new FileReader(file));
+		String line;
+		line = br.readLine();
+		if(line.length() != 0){
+			if(line.charAt(0) == '('){
+				//it is a L Command
+			}else if(line.charAt(0) == '@'){
+				//it is a A Command
+			}else{
+				//it is a C Command
+			}
+		}
+	}

@@ -8,7 +8,7 @@ push constant 30
 pop this 1
 push constant 4
 pop this 2
-push constant 20
+push constant 40
 pop this 3
 push pointer 0
 call Paddle.draw 1

@@ -1,5 +1,5 @@
 function PongGame.new 0
-push constant 10
+push constant 11
 call Memory.alloc 1
 pop pointer 0
 push constant 254
@@ -29,6 +29,8 @@ pop this 8
 push this 2
 call Paddle.position 1
 pop this 9
+push constant 1
+pop this 10
 push pointer 0
 return
 function PongGame.dispose 0
@@ -97,54 +99,44 @@ push this 2
 call Paddle.moveDown 1
 pop temp 0
 label IF_FALSE3
-push this 1
-call Paddle.position 1
-pop this 8
-push this 2
-call Paddle.position 1
-pop this 9
 push constant 7
 call Sys.wait 1
 pop temp 0
 push constant 0
 return
-function PongGame.moveBall 4
+function PongGame.moveBall 3
 push argument 0
 pop pointer 0
 push this 0
 call Ball.checkx 1
 pop this 7
-push constant 1
-neg
-pop local 0
 push argument 1
-pop local 2
+pop local 1
 push argument 2
-pop local 3
+pop local 2
 push this 0
 call Ball.checky 1
-pop local 1
+pop local 0
 push this 7
 push constant 6
-eq
+lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push local 0
 push local 1
-push local 2
-lt
-push local 1
-push local 2
-push constant 20
-add
 gt
+push local 0
+push local 1
+push constant 40
+add
+lt
 and
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push constant 1
-neg
-pop local 0
+pop this 10
 goto IF_END1
 label IF_FALSE1
 push this 4
@@ -154,36 +146,34 @@ push this 4
 call Score.draw 1
 pop temp 0
 push this 0
-call Ball.dispose 1
+call Ball.reset 1
 pop temp 0
-push constant 254
-push constant 125
-push constant 5
-call Ball.new 3
-pop this 0
+push constant 1
+neg
+pop this 10
 label IF_END1
 label IF_FALSE0
 push this 7
 push constant 500
-eq
+gt
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push local 1
-push local 3
-lt
-push local 1
-push this 2
-push constant 20
-add
+push local 0
+push local 2
 gt
+push local 0
+push local 2
+push constant 40
+add
+lt
 and
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push constant 1
 neg
-pop local 0
+pop this 10
 goto IF_END3
 label IF_FALSE3
 push this 3
@@ -193,17 +183,14 @@ push this 3
 call Score.draw 1
 pop temp 0
 push this 0
-call Ball.dispose 1
+call Ball.reset 1
 pop temp 0
-push constant 254
-push constant 125
-push constant 5
-call Ball.new 3
-pop this 0
+push constant 1
+pop this 10
 label IF_END3
 label IF_FALSE2
 push this 0
-push local 0
+push this 10
 call Ball.move 2
 pop temp 0
 push constant 0
@@ -226,6 +213,12 @@ not
 if-goto WHILE_END1
 call Keyboard.keyPressed 0
 pop local 0
+push this 1
+call Paddle.position 1
+pop this 8
+push this 2
+call Paddle.position 1
+pop this 9
 push pointer 0
 call PongGame.draw 1
 pop temp 0
@@ -291,6 +284,12 @@ not
 if-goto WHILE_END2
 call Keyboard.keyPressed 0
 pop local 0
+push this 1
+call Paddle.position 1
+pop this 8
+push this 2
+call Paddle.position 1
+pop this 9
 push pointer 0
 call PongGame.draw 1
 pop temp 0

@@ -8,7 +8,7 @@ class Paddle{
       let x = Ax;
       let y = 30;
       let w = 4;
-	  let l = 20;
+	  let l = 40;
       do draw();
       return this;
    }
